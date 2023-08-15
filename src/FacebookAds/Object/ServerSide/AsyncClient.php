@@ -36,8 +36,8 @@ class AsyncClient extends Singleton {
   public function __construct() {
     $handler_stack = HandlerStack::create(new CurlHandler([
       'options' => [
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT => 60,
+        CURLOPT_CONNECTTIMEOUT => 1.6,
+        CURLOPT_TIMEOUT => 1.6,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HEADER => true,
         CURLOPT_CAINFO => Api::instance()->getHttpClient()->getCaBundlePath(),
