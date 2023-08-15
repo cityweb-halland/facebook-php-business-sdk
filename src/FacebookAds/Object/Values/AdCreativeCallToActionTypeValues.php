@@ -39,6 +39,7 @@ class AdCreativeCallToActionTypeValues extends AbstractEnum {
 
   const ADD_TO_CART = 'ADD_TO_CART';
   const APPLY_NOW = 'APPLY_NOW';
+  const AUDIO_CALL = 'AUDIO_CALL';
   const BOOK_TRAVEL = 'BOOK_TRAVEL';
   const BUY = 'BUY';
   const BUY_NOW = 'BUY_NOW';
@@ -60,9 +61,11 @@ class AdCreativeCallToActionTypeValues extends AbstractEnum {
   const GET_DIRECTIONS = 'GET_DIRECTIONS';
   const GET_OFFER = 'GET_OFFER';
   const GET_OFFER_VIEW = 'GET_OFFER_VIEW';
+  const GET_PROMOTIONS = 'GET_PROMOTIONS';
   const GET_QUOTE = 'GET_QUOTE';
   const GET_SHOWTIMES = 'GET_SHOWTIMES';
   const GET_STARTED = 'GET_STARTED';
+  const INQUIRE_NOW = 'INQUIRE_NOW';
   const INSTALL_APP = 'INSTALL_APP';
   const INSTALL_MOBILE_APP = 'INSTALL_MOBILE_APP';
   const LEARN_MORE = 'LEARN_MORE';
@@ -89,6 +92,7 @@ class AdCreativeCallToActionTypeValues extends AbstractEnum {
   const SELL_NOW = 'SELL_NOW';
   const SEND_A_GIFT = 'SEND_A_GIFT';
   const SEND_GIFT_MONEY = 'SEND_GIFT_MONEY';
+  const SEND_UPDATES = 'SEND_UPDATES';
   const SHARE = 'SHARE';
   const SHOP_NOW = 'SHOP_NOW';
   const SIGN_UP = 'SIGN_UP';

@@ -40,6 +40,7 @@ class UserFields extends AbstractEnum {
   const ABOUT = 'about';
   const AGE_RANGE = 'age_range';
   const BIRTHDAY = 'birthday';
+  const COMMUNITY = 'community';
   const COVER = 'cover';
   const CURRENCY = 'currency';
   const EDUCATION = 'education';
@@ -50,6 +51,7 @@ class UserFields extends AbstractEnum {
   const GENDER = 'gender';
   const HOMETOWN = 'hometown';
   const ID = 'id';
+  const ID_FOR_AVATARS = 'id_for_avatars';
   const INSPIRATIONAL_PEOPLE = 'inspirational_people';
   const INSTALL_TYPE = 'install_type';
   const INSTALLED = 'installed';
@@ -88,6 +90,7 @@ class UserFields extends AbstractEnum {
       'about' => 'string',
       'age_range' => 'AgeRange',
       'birthday' => 'string',
+      'community' => 'Group',
       'cover' => 'UserCoverPhoto',
       'currency' => 'Currency',
       'education' => 'list<Object>',
@@ -98,6 +101,7 @@ class UserFields extends AbstractEnum {
       'gender' => 'string',
       'hometown' => 'Page',
       'id' => 'string',
+      'id_for_avatars' => 'string',
       'inspirational_people' => 'list<Experience>',
       'install_type' => 'string',
       'installed' => 'bool',

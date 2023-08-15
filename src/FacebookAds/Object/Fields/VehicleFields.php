@@ -45,7 +45,6 @@ class VehicleFields extends AbstractEnum {
   const CONDITION = 'condition';
   const CURRENCY = 'currency';
   const CUSTOM_LABEL_0 = 'custom_label_0';
-  const CUSTOM_NUMBER_0 = 'custom_number_0';
   const DATE_FIRST_ON_LOT = 'date_first_on_lot';
   const DEALER_COMMUNICATION_CHANNEL = 'dealer_communication_channel';
   const DEALER_EMAIL = 'dealer_email';
@@ -84,6 +83,7 @@ class VehicleFields extends AbstractEnum {
   const VEHICLE_SPECIFICATIONS = 'vehicle_specifications';
   const VEHICLE_TYPE = 'vehicle_type';
   const VIN = 'vin';
+  const VISIBILITY = 'visibility';
   const YEAR = 'year';
 
   public function getFieldTypes() {
@@ -96,7 +96,6 @@ class VehicleFields extends AbstractEnum {
       'condition' => 'string',
       'currency' => 'string',
       'custom_label_0' => 'string',
-      'custom_number_0' => 'unsigned int',
       'date_first_on_lot' => 'string',
       'dealer_communication_channel' => 'string',
       'dealer_email' => 'string',
@@ -135,6 +134,7 @@ class VehicleFields extends AbstractEnum {
       'vehicle_specifications' => 'list<Object>',
       'vehicle_type' => 'string',
       'vin' => 'string',
+      'visibility' => 'Visibility',
       'year' => 'unsigned int',
     );
   }

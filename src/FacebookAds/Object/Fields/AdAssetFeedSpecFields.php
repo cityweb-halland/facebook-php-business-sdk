@@ -39,6 +39,7 @@ class AdAssetFeedSpecFields extends AbstractEnum {
 
   const AD_FORMATS = 'ad_formats';
   const ADDITIONAL_DATA = 'additional_data';
+  const APP_PRODUCT_PAGE_ID = 'app_product_page_id';
   const ASSET_CUSTOMIZATION_RULES = 'asset_customization_rules';
   const AUTOTRANSLATE = 'autotranslate';
   const BODIES = 'bodies';
@@ -52,7 +53,6 @@ class AdAssetFeedSpecFields extends AbstractEnum {
   const IMAGES = 'images';
   const LINK_URLS = 'link_urls';
   const OPTIMIZATION_TYPE = 'optimization_type';
-  const POSTS = 'posts';
   const TITLES = 'titles';
   const VIDEOS = 'videos';
 
@@ -60,6 +60,7 @@ class AdAssetFeedSpecFields extends AbstractEnum {
     return array(
       'ad_formats' => 'list<string>',
       'additional_data' => 'Object',
+      'app_product_page_id' => 'string',
       'asset_customization_rules' => 'list<Object>',
       'autotranslate' => 'list<string>',
       'bodies' => 'list<AdAssetFeedSpecBody>',
@@ -73,7 +74,6 @@ class AdAssetFeedSpecFields extends AbstractEnum {
       'images' => 'list<AdAssetFeedSpecImage>',
       'link_urls' => 'list<AdAssetFeedSpecLinkURL>',
       'optimization_type' => 'string',
-      'posts' => 'list<Object>',
       'titles' => 'list<AdAssetFeedSpecTitle>',
       'videos' => 'list<AdAssetFeedSpecVideo>',
     );

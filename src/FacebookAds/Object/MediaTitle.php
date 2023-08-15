@@ -31,6 +31,7 @@ use FacebookAds\TypeChecker;
 use FacebookAds\Object\Fields\MediaTitleFields;
 use FacebookAds\Object\Values\MediaTitleContentCategoryValues;
 use FacebookAds\Object\Values\MediaTitleImageFetchStatusValues;
+use FacebookAds\Object\Values\MediaTitleVisibilityValues;
 
 /**
  * This class is auto-generated.
@@ -44,13 +45,6 @@ use FacebookAds\Object\Values\MediaTitleImageFetchStatusValues;
 class MediaTitle extends AbstractCrudObject {
 
   /**
-   * @deprecated getEndpoint function is deprecated
-   */
-  protected function getEndpoint() {
-    return 'media_titles';
-  }
-
-  /**
    * @return MediaTitleFields
    */
   public static function getFieldsEnum() {
@@ -60,6 +54,7 @@ class MediaTitle extends AbstractCrudObject {
   protected static function getReferencedEnums() {
     $ref_enums = array();
     $ref_enums['ImageFetchStatus'] = MediaTitleImageFetchStatusValues::getInstance()->getValues();
+    $ref_enums['Visibility'] = MediaTitleVisibilityValues::getInstance()->getValues();
     $ref_enums['ContentCategory'] = MediaTitleContentCategoryValues::getInstance()->getValues();
     return $ref_enums;
   }

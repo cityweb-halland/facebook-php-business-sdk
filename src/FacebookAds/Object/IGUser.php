@@ -29,8 +29,11 @@ use FacebookAds\Cursor;
 use FacebookAds\Http\RequestInterface;
 use FacebookAds\TypeChecker;
 use FacebookAds\Object\Fields\IGUserFields;
+use FacebookAds\Object\Values\InstagramInsightsResultBreakdownValues;
+use FacebookAds\Object\Values\InstagramInsightsResultMetricTypeValues;
 use FacebookAds\Object\Values\InstagramInsightsResultMetricValues;
 use FacebookAds\Object\Values\InstagramInsightsResultPeriodValues;
+use FacebookAds\Object\Values\InstagramInsightsResultTimeframeValues;
 
 /**
  * This class is auto-generated.
@@ -132,14 +135,20 @@ class IGUser extends AbstractCrudObject {
     $this->assureId();
 
     $param_types = array(
+      'breakdown' => 'list<breakdown_enum>',
       'metric' => 'list<metric_enum>',
+      'metric_type' => 'metric_type_enum',
       'period' => 'list<period_enum>',
       'since' => 'datetime',
+      'timeframe' => 'timeframe_enum',
       'until' => 'datetime',
     );
     $enums = array(
+      'breakdown_enum' => InstagramInsightsResultBreakdownValues::getInstance()->getValues(),
       'metric_enum' => InstagramInsightsResultMetricValues::getInstance()->getValues(),
+      'metric_type_enum' => InstagramInsightsResultMetricTypeValues::getInstance()->getValues(),
       'period_enum' => InstagramInsightsResultPeriodValues::getInstance()->getValues(),
+      'timeframe_enum' => InstagramInsightsResultTimeframeValues::getInstance()->getValues(),
     );
 
     $request = new ApiRequest(
@@ -211,8 +220,10 @@ class IGUser extends AbstractCrudObject {
     $this->assureId();
 
     $param_types = array(
+      'audio_name' => 'string',
       'caption' => 'string',
       'children' => 'list<string>',
+      'cover_url' => 'string',
       'image_url' => 'string',
       'is_carousel_item' => 'bool',
       'location_id' => 'string',
@@ -284,6 +295,29 @@ class IGUser extends AbstractCrudObject {
       new AbstractCrudObject(),
       'EDGE',
       array(),
+      new TypeChecker($param_types, $enums)
+    );
+    $request->addParams($params);
+    $request->addFields($fields);
+    return $pending ? $request : $request->execute();
+  }
+
+  public function getNotificationMessageTokens(array $fields = array(), array $params = array(), $pending = false) {
+    $this->assureId();
+
+    $param_types = array(
+    );
+    $enums = array(
+    );
+
+    $request = new ApiRequest(
+      $this->api,
+      $this->data['id'],
+      RequestInterface::METHOD_GET,
+      '/notification_message_tokens',
+      new UserPageOneTimeOptInTokenSettings(),
+      'EDGE',
+      UserPageOneTimeOptInTokenSettings::getFieldsEnum()->getValues(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);

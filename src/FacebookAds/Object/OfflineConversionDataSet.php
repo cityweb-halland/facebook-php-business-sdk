@@ -29,6 +29,8 @@ use FacebookAds\Cursor;
 use FacebookAds\Http\RequestInterface;
 use FacebookAds\TypeChecker;
 use FacebookAds\Object\Fields\OfflineConversionDataSetFields;
+use FacebookAds\Object\Values\AdAccountActionSourceValues;
+use FacebookAds\Object\Values\BusinessActionSourceValues;
 use FacebookAds\Object\Values\CustomAudienceActionSourceValues;
 use FacebookAds\Object\Values\OfflineConversionDataSetPermittedRolesValues;
 use FacebookAds\Object\Values\OfflineConversionDataSetRelationshipTypeValues;
@@ -220,16 +222,10 @@ class OfflineConversionDataSet extends AbstractCrudObject {
     return $pending ? $request : $request->execute();
   }
 
-  public function createEvent(array $fields = array(), array $params = array(), $pending = false) {
+  public function getServerEventsPermittedBusiness(array $fields = array(), array $params = array(), $pending = false) {
     $this->assureId();
 
     $param_types = array(
-      'data' => 'list<string>',
-      'namespace_id' => 'string',
-      'progress' => 'Object',
-      'upload_id' => 'string',
-      'upload_source' => 'string',
-      'upload_tag' => 'string',
     );
     $enums = array(
     );
@@ -237,11 +233,62 @@ class OfflineConversionDataSet extends AbstractCrudObject {
     $request = new ApiRequest(
       $this->api,
       $this->data['id'],
-      RequestInterface::METHOD_POST,
-      '/events',
-      new AbstractCrudObject(),
+      RequestInterface::METHOD_GET,
+      '/server_events_permitted_business',
+      new Business(),
       'EDGE',
-      array(),
+      Business::getFieldsEnum()->getValues(),
+      new TypeChecker($param_types, $enums)
+    );
+    $request->addParams($params);
+    $request->addFields($fields);
+    return $pending ? $request : $request->execute();
+  }
+
+  public function getSharedAccounts(array $fields = array(), array $params = array(), $pending = false) {
+    $this->assureId();
+
+    $param_types = array(
+      'action_source' => 'action_source_enum',
+      'business' => 'string',
+    );
+    $enums = array(
+      'action_source_enum' => AdAccountActionSourceValues::getInstance()->getValues(),
+    );
+
+    $request = new ApiRequest(
+      $this->api,
+      $this->data['id'],
+      RequestInterface::METHOD_GET,
+      '/shared_accounts',
+      new AdAccount(),
+      'EDGE',
+      AdAccount::getFieldsEnum()->getValues(),
+      new TypeChecker($param_types, $enums)
+    );
+    $request->addParams($params);
+    $request->addFields($fields);
+    return $pending ? $request : $request->execute();
+  }
+
+  public function getSharedAgencies(array $fields = array(), array $params = array(), $pending = false) {
+    $this->assureId();
+
+    $param_types = array(
+      'action_source' => 'action_source_enum',
+    );
+    $enums = array(
+      'action_source_enum' => BusinessActionSourceValues::getInstance()->getValues(),
+    );
+
+    $request = new ApiRequest(
+      $this->api,
+      $this->data['id'],
+      RequestInterface::METHOD_GET,
+      '/shared_agencies',
+      new Business(),
+      'EDGE',
+      Business::getFieldsEnum()->getValues(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);

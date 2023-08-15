@@ -30,7 +30,6 @@ use FacebookAds\Http\RequestInterface;
 use FacebookAds\TypeChecker;
 use FacebookAds\Object\Fields\ProductCatalogFields;
 use FacebookAds\Object\Values\CheckBatchRequestStatusErrorPriorityValues;
-use FacebookAds\Object\Values\MediaTitleContentCategoryValues;
 use FacebookAds\Object\Values\ProductCatalogCategoryCategorizationCriteriaValues;
 use FacebookAds\Object\Values\ProductCatalogDataSourceIngestionSourceTypeValues;
 use FacebookAds\Object\Values\ProductCatalogDiagnosticGroupAffectedChannelsValues;
@@ -314,6 +313,7 @@ class ProductCatalog extends AbstractCrudObject {
       'allow_upsert' => 'bool',
       'fbe_external_business_id' => 'string',
       'requests' => 'list<map>',
+      'version' => 'unsigned int',
     );
     $enums = array(
     );
@@ -333,11 +333,11 @@ class ProductCatalog extends AbstractCrudObject {
     return $pending ? $request : $request->execute();
   }
 
-  public function createCatalogWebsiteSetting(array $fields = array(), array $params = array(), $pending = false) {
+  public function createCatalogStore(array $fields = array(), array $params = array(), $pending = false) {
     $this->assureId();
 
     $param_types = array(
-      'is_allowed_to_crawl' => 'bool',
+      'page' => 'int',
     );
     $enums = array(
     );
@@ -346,10 +346,10 @@ class ProductCatalog extends AbstractCrudObject {
       $this->api,
       $this->data['id'],
       RequestInterface::METHOD_POST,
-      '/catalog_website_settings',
-      new AbstractCrudObject(),
+      '/catalog_store',
+      new StoreCatalogSettings(),
       'EDGE',
-      array(),
+      StoreCatalogSettings::getFieldsEnum()->getValues(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);
@@ -427,6 +427,29 @@ class ProductCatalog extends AbstractCrudObject {
       new CheckBatchRequestStatus(),
       'EDGE',
       CheckBatchRequestStatus::getFieldsEnum()->getValues(),
+      new TypeChecker($param_types, $enums)
+    );
+    $request->addParams($params);
+    $request->addFields($fields);
+    return $pending ? $request : $request->execute();
+  }
+
+  public function getCollaborativeAdsEventStats(array $fields = array(), array $params = array(), $pending = false) {
+    $this->assureId();
+
+    $param_types = array(
+    );
+    $enums = array(
+    );
+
+    $request = new ApiRequest(
+      $this->api,
+      $this->data['id'],
+      RequestInterface::METHOD_GET,
+      '/collaborative_ads_event_stats',
+      new CatalogSegmentAllMatchCountLaser(),
+      'EDGE',
+      CatalogSegmentAllMatchCountLaser::getFieldsEnum()->getValues(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);
@@ -896,6 +919,7 @@ class ProductCatalog extends AbstractCrudObject {
       'item_sub_type' => 'item_sub_type_enum',
       'item_type' => 'string',
       'requests' => 'map',
+      'version' => 'unsigned int',
     );
     $enums = array(
       'item_sub_type_enum' => ProductCatalogItemSubTypeValues::getInstance()->getValues(),
@@ -923,6 +947,7 @@ class ProductCatalog extends AbstractCrudObject {
       'allow_upsert' => 'bool',
       'item_type' => 'string',
       'requests' => 'map',
+      'version' => 'unsigned int',
     );
     $enums = array(
     );
@@ -935,68 +960,6 @@ class ProductCatalog extends AbstractCrudObject {
       new ProductCatalog(),
       'EDGE',
       ProductCatalog::getFieldsEnum()->getValues(),
-      new TypeChecker($param_types, $enums)
-    );
-    $request->addParams($params);
-    $request->addFields($fields);
-    return $pending ? $request : $request->execute();
-  }
-
-  public function getMediaTitles(array $fields = array(), array $params = array(), $pending = false) {
-    $this->assureId();
-
-    $param_types = array(
-      'bulk_pagination' => 'bool',
-      'filter' => 'Object',
-    );
-    $enums = array(
-    );
-
-    $request = new ApiRequest(
-      $this->api,
-      $this->data['id'],
-      RequestInterface::METHOD_GET,
-      '/media_titles',
-      new MediaTitle(),
-      'EDGE',
-      MediaTitle::getFieldsEnum()->getValues(),
-      new TypeChecker($param_types, $enums)
-    );
-    $request->addParams($params);
-    $request->addFields($fields);
-    return $pending ? $request : $request->execute();
-  }
-
-  public function createMediaTitle(array $fields = array(), array $params = array(), $pending = false) {
-    $this->assureId();
-
-    $param_types = array(
-      'applinks' => 'Object',
-      'content_category' => 'content_category_enum',
-      'currency' => 'string',
-      'description' => 'string',
-      'fb_page_id' => 'string',
-      'genres' => 'list<string>',
-      'images' => 'list<Object>',
-      'kg_fb_id' => 'string',
-      'media_title_id' => 'string',
-      'price' => 'unsigned int',
-      'title' => 'string',
-      'title_display_name' => 'string',
-      'url' => 'string',
-    );
-    $enums = array(
-      'content_category_enum' => MediaTitleContentCategoryValues::getInstance()->getValues(),
-    );
-
-    $request = new ApiRequest(
-      $this->api,
-      $this->data['id'],
-      RequestInterface::METHOD_POST,
-      '/media_titles',
-      new MediaTitle(),
-      'EDGE',
-      MediaTitle::getFieldsEnum()->getValues(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);

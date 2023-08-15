@@ -455,14 +455,14 @@ class CustomData implements ArrayAccess {
       }
     }
 
-    $normalized_payload = array_filter($normalized_payload, fn($val) => is_array($val) || strlen($val ?? ''));
-    // $normalized_payload = array_filter($normalized_payload, function($val) {
-    //   if (is_array($val)) {
-    //     return true;
-    //   } else {
-    //     return strlen($val);
-    //   }
-    // });
+
+    $normalized_payload = array_filter($normalized_payload, function($val) {
+      if (is_array($val)) {
+        return true;
+      } else {
+        return strlen((string) $val);
+      }
+    });
 
     return $normalized_payload;
 

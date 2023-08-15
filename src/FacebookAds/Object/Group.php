@@ -287,54 +287,6 @@ class Group extends AbstractCrudObject {
     return $pending ? $request : $request->execute();
   }
 
-  public function getFeaturedCards(array $fields = array(), array $params = array(), $pending = false) {
-    $this->assureId();
-
-    $param_types = array(
-    );
-    $enums = array(
-    );
-
-    $request = new ApiRequest(
-      $this->api,
-      $this->data['id'],
-      RequestInterface::METHOD_GET,
-      '/featured_cards',
-      new AbstractCrudObject(),
-      'EDGE',
-      array(),
-      new TypeChecker($param_types, $enums)
-    );
-    $request->addParams($params);
-    $request->addFields($fields);
-    return $pending ? $request : $request->execute();
-  }
-
-  public function createFeaturedCard(array $fields = array(), array $params = array(), $pending = false) {
-    $this->assureId();
-
-    $param_types = array(
-      'description' => 'map',
-      'title' => 'map',
-    );
-    $enums = array(
-    );
-
-    $request = new ApiRequest(
-      $this->api,
-      $this->data['id'],
-      RequestInterface::METHOD_POST,
-      '/featured_cards',
-      new AbstractCrudObject(),
-      'EDGE',
-      array(),
-      new TypeChecker($param_types, $enums)
-    );
-    $request->addParams($params);
-    $request->addFields($fields);
-    return $pending ? $request : $request->execute();
-  }
-
   public function getFeed(array $fields = array(), array $params = array(), $pending = false) {
     $this->assureId();
 
@@ -839,37 +791,6 @@ class Group extends AbstractCrudObject {
       new ProfilePictureSource(),
       'EDGE',
       ProfilePictureSource::getFieldsEnum()->getValues(),
-      new TypeChecker($param_types, $enums)
-    );
-    $request->addParams($params);
-    $request->addFields($fields);
-    return $pending ? $request : $request->execute();
-  }
-
-  public function createShiftSetting(array $fields = array(), array $params = array(), $pending = false) {
-    $this->assureId();
-
-    $param_types = array(
-      'external_id' => 'string',
-      'shift_feature_setting' => 'shift_feature_setting_enum',
-    );
-    $enums = array(
-      'shift_feature_setting_enum' => array(
-        'ALL_FEATURES_OFF',
-        'ALL_FEATURES_ON',
-        'SHIFT_COVER_ONLY_ON',
-        'SHIFT_VIEWER_ONLY_ON',
-      ),
-    );
-
-    $request = new ApiRequest(
-      $this->api,
-      $this->data['id'],
-      RequestInterface::METHOD_POST,
-      '/shift_settings',
-      new AbstractCrudObject(),
-      'EDGE',
-      array(),
       new TypeChecker($param_types, $enums)
     );
     $request->addParams($params);
