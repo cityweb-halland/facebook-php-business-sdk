@@ -44,7 +44,10 @@ class AsyncClient extends Singleton {
       ]
     ]));
 
-    $this->client = new Client(['handler' => $handler_stack]);
+    $this->client = new Client([
+		'handler' => $handler_stack,
+		'timeout' => 1.6
+	]);
   }
 
   public function getClient() {
