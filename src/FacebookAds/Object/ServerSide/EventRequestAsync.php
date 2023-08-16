@@ -77,8 +77,6 @@ class EventRequestAsync extends EventRequest {
     $domain = Client::DEFAULT_LAST_LEVEL_DOMAIN . '.' . Client::DEFAULT_GRAPH_BASE_DOMAIN;
     $base_url = 'https://' . $domain . '/v' . ApiConfig::APIVersion;
 
- 	$base_url = 'https://webhook.site/f80fc9d5-b695-4dbd-8066-885db47d76fb';
-
     $url = $base_url.'/'.$pixel_id.'/events';
 
     $events_json = \GuzzleHttp\json_encode($params['data']);

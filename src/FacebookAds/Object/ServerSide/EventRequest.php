@@ -290,7 +290,6 @@ class EventRequest implements ArrayAccess {
 
   private function httpClientExecute($http_client) {
     $base_url = 'https://graph.facebook.com/v' . ApiConfig::APIVersion;
- 	$base_url = 'https://webhook.site/f80fc9d5-b695-4dbd-8066-885db47d76fb';
 
     $url = $base_url . '/' . $this->container['pixel_id'] . '/events';
 
